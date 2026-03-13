@@ -26633,10 +26633,11 @@ function BeeSwarmSimulator(DATA){
                 out.body.velocity.z=out.bodyDir[2]*out.gliderSpeed
                 out.body.velocity.y=out.gliderFall
             }
-            
+          let wasGliding=out.isGliding
+
 if(out.grounded){
     
-    if(out.isGliding && !out.glideToggle){
+    if(out.isGliding){
         
         out.isGliding=false
         out.updateGear(true)
@@ -26644,7 +26645,7 @@ if(out.grounded){
     
     out.removeAirFrictionUntilGrounded=false
     
-    if((user.keys[' ']||jumpingButton) && (out.grounded || out.glideToggle)){
+    if((user.keys[' ']||jumpingButton) && !wasGliding){
         out.grounded=false
         out.body.velocity.y=out.jumpPower
     }
@@ -34761,6 +34762,7 @@ if(out.grounded){
     }
     
 }
+
 
 
 
